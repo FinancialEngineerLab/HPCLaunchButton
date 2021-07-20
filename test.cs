@@ -13,13 +13,12 @@ namespace JobSample
 {
     class Program
     {
-        public static string InputConnectionString = @"Data Source=LHSQL\LHDB;Initial Catalog=HanwhaInput;Integrated Security=True;timeout=0;";
+        public static string InputConnectionString = @"Data Source=SQL\DB;Initial Catalog=Input;Integrated Security=True;timeout=0;";
         public static List<string> LoadRecordList(string type, string InputConnString)
         {
             List<string> RecordList = new List<string>();
 
-            const string readRecordSql = @"select * from HanwhaInput.dbo.TB_ST1MV01V where HEDG_BLOK_DVSN = @type AND FUND_CODE_01='V9101'";
-            //and FUND_CODE_01='V9101'
+            const string readRecordSql = @"select * from Input.dbo.TB where BLOK = @type AND CODE_01='111'";
             // Making record's keys case insensitive.
             Dictionary<string, object> dbRecord = new Dictionary<string, object>();
             // Expecting to read exactly 1 record for this record ID.
@@ -36,7 +35,7 @@ namespace JobSample
                     {
                         while (reader.Read())
                         {
-                            RecordList.Add(reader["poly_no"].ToString());
+                            RecordList.Add(reader["ID"].ToString());
                         }
                     }
                 }
@@ -124,28 +123,6 @@ namespace JobSample
 
 
             List<string> valuationdates = new List<string>();
-            valuationdates.Add("2021-05-31");
-            valuationdates.Add("2021-06-01");
-            valuationdates.Add("2021-06-02");
-            valuationdates.Add("2021-06-03");
-            valuationdates.Add("2021-06-04");
-            valuationdates.Add("2021-06-07");
-            valuationdates.Add("2021-06-08");
-            valuationdates.Add("2021-06-09");
-            valuationdates.Add("2021-06-10");
-            valuationdates.Add("2021-06-11");
-
-            valuationdates.Add("2021-06-14");
-            valuationdates.Add("2021-06-15");
-            valuationdates.Add("2021-06-16");
-            valuationdates.Add("2021-06-17");
-            valuationdates.Add("2021-06-18");
-
-            valuationdates.Add("2021-06-21");
-            valuationdates.Add("2021-06-22");
-            valuationdates.Add("2021-06-23");
-            valuationdates.Add("2021-06-24");
-            valuationdates.Add("2021-06-25");
 
             valuationdates.Add("2021-06-28");
             valuationdates.Add("2021-06-29");
